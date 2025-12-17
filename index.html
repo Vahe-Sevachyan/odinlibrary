@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Odin Library</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>The Odin library</h1>
+    <div class="container">
+      <button class="create-book-btn">Create New Book +</button>
+      <div class="book-display">
+        <h3>Book List</h3>
+      </div>
+    </div>
+    <div>
+      <div class="modal">
+        <div class="modal-wrapper">
+          <label for="title"
+            >Title:<input
+              type="text"
+              for="title"
+              class="title-input"
+              id="title" /></label
+          ><br />
+          <label for="author"
+            >Author:<input
+              type="text"
+              for="author"
+              class="author-input"
+              id="author" /></label
+          ><br />
+          <label for="pages"
+            >Pages:<input
+              type="number"
+              for="pages"
+              class="pages-input"
+              id="pages"
+          /></label>
+          <label for="readBook"
+            >Read Book<input
+              type="checkbox"
+              id="readBook"
+              name="read"
+              value="read"
+          /></label>
+          <br />
+          <button class="save-bookBtn">Save Book</button>
+          <button class="close-modal-btn">Close Modal</button>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
