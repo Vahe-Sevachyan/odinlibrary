@@ -35,14 +35,30 @@ function extractBookInfoFromInput() {
   const bookPages = bookPagesInput.value;
   const read = null;
   addBookToLibrary(bookTitle, bookAuthor, bookPages, read);
+  clearInputs();
+  // closeModal();
 }
-
+function clearInputs() {
+  bookTitleInput.value = "";
+  bookAuthorInput.value = "";
+  bookPagesInput.value = " ";
+}
 saveBookBtn.addEventListener("click", extractBookInfoFromInput);
 
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new NewBook(title, author, pages, read);
   myLibrary = [...myLibrary, newBook];
   myLibrary.forEach((book) => {
-    console.log(book.id);
+    const bookContainer = document.createElement("div");
+    const bookTitle = document.createElement("span");
+    const bookAuthor = document.createElement("span");
+    const bookPage = document.createElement("span");
+    const readBook = document.createElement("span");
+    bookContainer.append(bookTitle, bookAuthor, bookPage, readBook);
+    bookDisplay.appendChild(bookContainer);
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookPage.textContent = book.pages;
+    readBook.textContent = book.read;
   });
 }
