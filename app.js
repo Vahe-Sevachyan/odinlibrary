@@ -7,6 +7,7 @@ const bookAuthorInput = document.querySelector(".author-input");
 const bookIsRead = document.querySelector("#readBook");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close-modal-btn");
+// const container = document.querySelector(".container");
 let myLibrary = [];
 
 function NewBook(title, author, pages, read) {
@@ -26,6 +27,7 @@ function closeModal() {
 }
 
 closeModalBtn.addEventListener("click", closeModal);
+saveBookBtn.addEventListener("click", extractBookInfoFromInput);
 
 function extractBookInfoFromInput() {
   const bookTitle = bookTitleInput.value;
@@ -36,7 +38,7 @@ function extractBookInfoFromInput() {
   myLibrary.push(newBook);
   displayBooks();
   clearInputs();
-  // closeModal();
+  closeModal();
 }
 
 function clearInputs() {
@@ -44,17 +46,9 @@ function clearInputs() {
   bookAuthorInput.value = "";
   bookPagesInput.value = " ";
 }
-saveBookBtn.addEventListener("click", extractBookInfoFromInput);
 
-// function addBookToLibrary(title, author, pages, read) {
-//   const bookContainer = document.createElement("div");
-//   const bookTitle = document.createElement("span");
-//   const bookAuthor = document.createElement("span");
-//   const bookPage = document.createElement("span");
-//   const readBook = document.createElement("span");
-
-// }
 function displayBooks() {
+  bookDisplay.innerHTML = "";
   myLibrary.forEach((book, index) => {
     const bookContainer = document.createElement("div");
     bookContainer.classList.add("book-container");
@@ -68,16 +62,18 @@ function displayBooks() {
     bookAuthor.innerHTML = `Author: ${book.author}`;
 
     const bookPages = document.createElement("p");
-    bookPages.classList.add("book-pages ");
+    bookPages.classList.add("book-pages");
+    bookPages.innerHTML = `Pages: ${book.pages}`;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.classList.add("delete-button");
+
+    deleteButton.addEventListener("click", () => {
+      myLibrary.splice(index, 1);
+      displayBooks();
+    });
+    bookContainer.append(bookTitle, bookAuthor, bookPages, deleteButton);
+    bookDisplay.appendChild(bookContainer);
   });
 }
-
-myLibrary.forEach((book, index) => {
-  // myLibrary.push(newBook);
-  // bookContainer.append(bookTitle, bookAuthor, bookPage, readBook);
-  // bookDisplay.appendChild(bookContainer);
-  // bookTitle.textContent = book.title;
-  // bookAuthor.textContent = book.author;
-  // bookPage.textContent = book.pages;
-  // readBook.textContent = book.read;
-});
